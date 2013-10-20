@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -27,51 +9,6 @@
        
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css">
         <title>Hello World</title>
-        <style>
-            .header_nav {
-                text-align: center;
-                line-height: 60px;
-                margin: 0;
-            }
-            .header_nav > .active_menu {
-                background: rgb(50, 145, 199);                 
-            }
-            .header_nav > li > a{
-                color: black !important;
-                text-decoration: none;
-                cursor: pointer;
-                display: block;
-                text-shadow: none;
-            }
-            input[type=number],.progress-bar .ui-slider-handle {
-              display: none;
-            }
-            .progress-bar .ui-slider-track {
-              margin: 0px;
-            }
-
-            img {
-                min-width: 100%;
-            }
-            figure {
-                width: 45%;
-                display: inline-block;
-                margin: 5%;
-            }
-            .progress-bar {
-                width: 40%;
-                display: inline-block;
-                -webkit-transform: rotate(-90deg);
-                margin-bottom: 5em;
-            }
-            .ui-slider-bg.ui-btn-active {
-                /* width: 7em; */
-            }
-            .ui-slider-track.ui-shadow-inset.ui-bar-inherit.ui-corner-all.ui-mini {
-                width: 200%;
-                height: 200%;
-            }
-        </style>
     </head>
     <body>
         <section data-role='page' id='page_login'>
@@ -205,17 +142,6 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
-            (function() {
-                var tries = 0;
-                setInterval(function(){
-                    if (tries < 56){
-                        tries++;
-                        $('#progress-bar').val(tries * 1);
-                        $('#progress-bar').slider('refresh'); 
-                    }       
-                }, 100);
-                }
-            )();
             app.initialize();
         </script>
     </body>

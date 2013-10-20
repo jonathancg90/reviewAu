@@ -113,3 +113,47 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+/*STYLES OWNERS*/
+.header_nav {
+    text-align: center;
+    line-height: 60px;
+    margin: 0;
+}
+.header_nav > .active_menu {
+    background: rgb(50, 145, 199);                 
+}
+.header_nav > li > a{
+    color: black !important;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    text-shadow: none;
+}
+input[type=number],.progress-bar .ui-slider-handle {
+  display: none;
+}
+.progress-bar .ui-slider-track {
+  margin: 0px;
+}
+
+img {
+    min-width: 100%;
+}
+figure {
+    width: 45%;
+    display: inline-block;
+    margin: 5%;
+}
+.progress-bar {
+    width: 40%;
+    display: inline-block;
+    -webkit-transform: rotate(-90deg);
+    margin-bottom: 5em;
+}
+.ui-slider-bg.ui-btn-active {
+    /* width: 7em; */
+}
+.ui-slider-track.ui-shadow-inset.ui-bar-inherit.ui-corner-all.ui-mini {
+    width: 200%;
+    height: 200%;
+}
