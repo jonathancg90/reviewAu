@@ -46,13 +46,14 @@ var app = {
 
         console.log('Received Event: ' + id);
         // progress bar
-        // var tries = 0;
-        // setInterval(function(){
-        //     if (tries < 56){
-        //         tries++;
-        //         $('#progress-bar').val(tries * 1);
-        //         $('#progress-bar').slider('refresh'); 
-        //     }       
-        // }, 100);
+        var tries = 0;
+        setInterval(function(){
+            if (tries < 56){
+                tries++;
+                // $('#progress-bar').find('.ui-slider-bg').css({
+                //     'width':'10px'
+                // });
+            }       
+        }, 100);
     }
 };
