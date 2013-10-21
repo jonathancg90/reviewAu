@@ -113,8 +113,6 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
-
-
 /*STYLES OWNERS*/
 .header_nav {
     text-align: center;
@@ -132,7 +130,7 @@ h1 {
     text-shadow: none;
 }
 input[type=number],.progress-bar .ui-slider-handle {
-  display: none;
+  display: none !important;
 }
 .progress-bar .ui-slider-track {
   margin: 0px;
@@ -158,4 +156,54 @@ figure {
 .ui-slider-track.ui-shadow-inset.ui-bar-inherit.ui-corner-all.ui-mini {
     width: 200%;
     height: 200%;
+}
+
+/*post*/
+.comment {
+    padding: 2%;
+    width: 85%;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid #b4bbcd;
+    margin-bottom: 1em;
+    box-shadow: 2px 2px 7px -4px;
+}
+.body_comment {
+    padding: 10px;
+    font-size: 14px;
+    font-family: serif;
+    border-radius: 2%;
+    margin: 0;
+}
+.head_comment h1 {
+    text-align: left;
+    font-size: 16px;
+    text-shadow: none;
+    color: currentcolor;
+    padding: 2%;
+    margin-left: 11px;
+    background: rgb(230, 230, 224);
+    display: block;
+    width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 5px;
+}
+.options > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid #b4bbcd;
+}
+.options > ul li {
+    display: inline-table;
+}
+.options > ul li a {
+   text-decoration: none;
+    color: rgb(59, 127, 190) !important;
+    padding: 7px 7px 0 7px;
+    display: block;
 }

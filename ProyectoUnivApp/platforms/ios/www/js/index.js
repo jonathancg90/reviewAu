@@ -43,16 +43,17 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-        console.log('Received Event: ' + id);
 
+        console.log('Received Event: ' + id);
         // progress bar
-        // var tries = 0;
-        // setInterval(function(){
-        //     if (tries < 56){
-        //         tries++;
-        //         $('#progress-bar').val(tries * 1);
-        //         $('#progress-bar').slider('refresh'); 
-        //     }       
-        // }, 100);
+        var tries = 0;
+        setInterval(function(){
+            if (tries < 56){
+                tries++;
+                // $('#progress-bar').find('.ui-slider-bg').css({
+                //     'width':'10px'
+                // });
+            }       
+        }, 100);
     }
 };
