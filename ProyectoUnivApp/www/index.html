@@ -38,9 +38,9 @@
         <section data-role='page' id='page_login'>
             <article data-role="content">
                 <form action="">
-                    <input type="text" id="username" class="form-control input-lg" placeholder="Username">
-                    <input type="password" id="password" class="form-control input-lg" placeholder="Password">
-                    <input type="submit" value="Log In" id="logIn">
+                    <input type="text" class="form-control input-lg" placeholder="Username">
+                    <input type="password" class="form-control input-lg" placeholder="Password">
+                    <input type="button" value="Log In" id="logIn">
                     <a href="#page_profile">Page2</a>
                 </form>
             </article><!-- /content -->
@@ -183,6 +183,7 @@
             });
             myDataRef.on('child_added', function(snapshot) {
                 var message = snapshot.val();
+                debugger;
                 displayChatMessage(message.name, message.text);
             });
             function displayChatMessage(name, text) {                 
