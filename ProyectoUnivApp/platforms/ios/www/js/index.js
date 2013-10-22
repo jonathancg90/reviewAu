@@ -13,6 +13,28 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         console.log('Received Event: ' + id);
+
+        //Otros
+
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+        // progress bar
+        var tries = 0;
+        setInterval(function(){
+            if (tries < 56){
+                tries++;
+                // $('#progress-bar').find('.ui-slider-bg').css({
+                //     'width':'10px'
+                // });
+            }
+        }, 100);
+
         app.init();
     },
 
@@ -52,12 +74,13 @@ var app = {
                         $('.message').append(data.message);
                     }
                     else{
-                        $('.message').append(data.message);
-                        $('#token').val(data.token);
-                        $('.Information').show();
-                        evtProfile();
-                        evtSaberCursoDelDia();
-                        evtCriterios();
+                        $.mobile.changePage("#page_profile");
+//                        $('.message').append(data.message);
+//                        $('#token').val(data.token);
+//                        $('.Information').show();
+//                        evtProfile();
+//                        evtSaberCursoDelDia();
+//                        evtCriterios();
                     }
                 }
             });
@@ -227,28 +250,5 @@ var app = {
             e.preventDefault();
             evtCalificar();
         });
-
-
-
-        //Otros
-
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-        // progress bar
-        var tries = 0;
-        setInterval(function(){
-            if (tries < 56){
-                tries++;
-                // $('#progress-bar').find('.ui-slider-bg').css({
-                //     'width':'10px'
-                // });
-            }       
-        }, 100);
     }
 };
