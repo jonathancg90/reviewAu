@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -6,11 +24,17 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-       
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css">
         <title>Hello World</title>
     </head>
     <body>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+            </div>
+        </div>
         <section data-role='page' id='page_login'>
             <article data-role="content">
                 <form action="">
@@ -118,31 +142,56 @@
                   data-highlight="true" data-mini="true" />
                 </div>
                 <div data-role='fieldcontain'>
-                    <textarea cols="40" rows="8" name="textarea" id="textarea" placeholder='Tipea Aqui'></textarea>
+                     <input type='text' id='nameInput' placeholder='Name'>
+                    <textarea cols="40" rows="8" name="textarea" id='messageInput' placeholder='Tipea Aqui'></textarea>
                 </div>
-                <article>
-                    <header>
-                        <hgroup>
-                            <h1>titulo1</h1>
-                        </hgroup>
-                    </header>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, odio, asperiores est magnam similique tenetur nam molestias eaque odit eligendi doloribus vero nesciunt porro saepe dolores exercitationem laborum. Enim, alias.</p>
-                    <div class='options'>
-                        <ul>
-                            <li><a href="#">Like</a></li>
-                            <li><a href="#">Comentar</a></li>
-                            <li><a href="#">Comentar</a></li>
-                        </ul>
-                    </div>
-                </article>
+                <section id='list_comment'>
+                     <article class='comment'>
+                        <header class='head_comment'>
+                            <hgroup>
+                                <h1 class='name_user'>titulo1</h1>
+                            </hgroup>
+                        </header>
+                        <p class='body_comment'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, odio, asperiores est magnam similique tenetur nam molestias eaque odit eligendi doloribus vero nesciunt porro saepe dolores exercitationem laborum. Enim, alias.</p>
+                        <nav class='options'>
+                            <ul>
+                                <li><a href="#">Like</a></li>
+                                <li><a href="#">Comentar</a></li>
+                                <li><a href="#">Comentar</a></li>
+                            </ul>
+                        </nav>
+                    </article>
+                </section>
             </article>
         </section>
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js"></script>
+
+        <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js"></script>
         <script type="text/javascript">
             app.initialize();
+            var myDataRef = new Firebase('https://writeandshare.firebaseio.com');            
+            $('#messageInput').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var name = $('#nameInput').val();
+                    var text = $('#messageInput').val();
+                    myDataRef.push({name: name, text: text});
+                    $('#messageInput').val('');
+                }
+            });
+            myDataRef.on('child_added', function(snapshot) {
+                var message = snapshot.val();
+                debugger;
+                displayChatMessage(message.name, message.text);
+            });
+            function displayChatMessage(name, text) {                 
+                $('.comment:last-child').clone().appendTo('#list_comment');                           
+                var clone = $('.comment:last-child');
+                clone.find('.name_user').text(name);
+                clone.find('.body_comment').text(text);
+            };
         </script>
     </body>
 </html>

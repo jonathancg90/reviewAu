@@ -40,5 +40,23 @@ var app = {
             });
         });
 
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+        // progress bar
+        var tries = 0;
+        setInterval(function(){
+            if (tries < 56){
+                tries++;
+                // $('#progress-bar').find('.ui-slider-bg').css({
+                //     'width':'10px'
+                // });
+            }       
+        }, 100);
     }
 };
