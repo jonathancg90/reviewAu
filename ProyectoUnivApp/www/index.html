@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -26,52 +8,53 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.css">
         <title>Hello World</title>
+
+        <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>        
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js"></script>
     </head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
             </div>
         </div>
-        <section data-role='page' id='page_login'>
+        <section data-role='page' id='page_login' data-theme='b'>
             <article data-role="content">
-                <form action="">
-                    <input type="text" class="form-control input-lg" placeholder="Username">
-                    <input type="password" class="form-control input-lg" placeholder="Password">
-                    <input type="submit" value=Log In>
-                    <a href="#page_profile">Page2</a>
+                <form action="" id='form_login'>
+                    <input type="text" class="form-control input-lg" id='username' placeholder="Username">
+                    <input type="password" class="form-control input-lg" id='password' placeholder="Password">
+                    <input type="submit" value=Log In id='logIn'>
+                    <span class='message'></span>
+                    <a href="#page_profile" data-transition='slide'>Page2</a>
                 </form>
             </article><!-- /content -->
         </section>
-        <section data-role='page' id='page_profile'>
+        <section data-role='page' id='page_update_profile' data-theme='b'>
             <header data-role='header' data-position='fixed' data-id='main_header'>
                 <ul class="ui-grid-b header_nav">
-                    <li class="ui-block-a active_menu"><a href='#page_profile'>Perfil</a></li>
-                    <li class="ui-block-b"><a href='#page_filter'>Filtro</a></li>
-                    <li class="ui-block-c"><a href='#page_muro'>Muro</a></li>
+                    <li class="ui-block-a active_menu"><a href='#page_profile' data-transition='slide'>Perfil</a></li>
+                    <li class="ui-block-b"><a href='#page_filter' data-transition='slide'>Filtro</a></li>
+                    <li class="ui-block-c"><a href='#page_muro' data-transition='slide'>Muro</a></li>
                 </ul>
             </header>
             <article data-role='content'>
-                <form action="">
+                <form action="" id='form_actualizar'>
                     <div data-role="fieldcontain">
                         <label for="textinput-fc">Nombre:</label>
                         <input type="text" name="textinput-fc" id="textinput-fc" placeholder="Text input" value="">
                     </div>
                     <div data-role="fieldcontain">
+                        <a href="" id='carreras'></a>
                         <label for="select-native-fc">Carrera:</label>
-                        <select name="select-native-fc" id="select-native-fc">
-                            <option value="small">Ing. Sistemas</option>
-                            <option value="medium">Derecho</option>
-                            <option value="large">Contabilidad</option>
-                            <option value="large">Administracion</option>
-                            <option value="large">Psicologia</option>
+                        <select name="select-native-fc" id="select_carreras">
                         </select>
                     </div>
                     <div data-role="fieldcontain">
                         <label for="select-native-fa">Ciclo:</label>
-                        <select name="select-native-fc" id="select-native-fa">
+                        <select name="select-native-fc" id="select_ciclo">
                             <option value="small">I</option>
                             <option value="medium">II</option>
                             <option value="large">III</option>
@@ -85,14 +68,15 @@
                         </select>
                     </div>
                     <div data-role="fieldcontain">
-                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <a href="" id='Turnos'></a>
+                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id='turnos'>
                             <legend>Turno:</legend>
-                                <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
-                                <label for="radio-choice-c">Mañana</label>
-                                <input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
-                                <label for="radio-choice-d">Tarde</label>
-                                <input type="radio" name="radio-choice-b" id="radio-choice-e" value="gallery">
-                                <label for="radio-choice-e">Noche</label>
+                            <input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
+                            <label for="radio-choice-c">Mañana</label>
+                            <input type="radio" name="radio-choice-b" class='input_check_turno' id="radio-choice-d" value="grid">
+                            <label for="radio-choice-d">Tarde</label>
+                            <input type="radio" name="radio-choice-b" class='input_check_turno' id="radio-choice-e" value="gallery">
+                            <label for="radio-choice-e">Noche</label>
                         </fieldset>
                     </div>
                     <div data-role="fieldcontain">
@@ -106,31 +90,47 @@
                 </form>
             </article>
         </section>
-        <section data-role='page' id='page_filter'>
+        <section data-role='page' id='page_profile' data-theme='b'>
             <header data-role='header' data-position='fixed' data-id='main_header'>
                 <ul class="ui-grid-b header_nav">
-                    <li class="ui-block-a"><a href='#page_profile'>Perfil</a></li>
-                    <li class="ui-block-b active_menu"><a href='#page_filter'>Filtro</a></li>
-                    <li class="ui-block-c"><a href='#page_muro'>Muro</a></li>
+                    <li class="ui-block-a active_menu"><a href='#page_profile' data-transition='slide'>Perfil</a></li>
+                    <li class="ui-block-b"><a href='#page_filter' data-transition='slide'>Filtro</a></li>
+                    <li class="ui-block-c"><a href='#page_muro' data-transition='slide'>Muro</a></li>
+                </ul>
+            </header>
+            <a href="#page_update_profile"></a>
+            <input type="hidden" class='token'>
+            <input type="hidden" id="idCurso">
+            <article data-role='content' class='content-Profile'></article>
+        </section>
+        <section data-role='page' id='page_filter' data-theme='b'>
+            <header data-role='header' data-position='fixed' data-id='main_header'>
+                <ul class="ui-grid-b header_nav">
+                    <li class="ui-block-a"><a href='#page_profile' data-transition='slide'>Perfil</a></li>
+                    <li class="ui-block-b active_menu"><a href='#page_filter' data-transition='slide'>Filtro</a></li>
+                    <li class="ui-block-c"><a href='#page_muro' data-transition='slide'>Muro</a></li>
                 </ul>
             </header>
             <article data-role='content'>
-                <label for="slider-1">Me fascina:</label>
-                <input type="range" name="slider-1" id="slider-1" value="50" min="0" max="100" data-highlight="true">
-                <label for="slider-2">Me gusta:</label>
-                <input type="range" name="slider-2" id="slider-2" value="50" min="0" max="100" data-highlight="true">
-                <label for="slider-3">Me da sueño:</label>
-                <input type="range" name="slider-3" id="slider-3" value="50" min="0" max="100" data-highlight="true">
-                <label for="slider-4">Me aburre:</label>
-                <input type="range" name="slider-4" id="slider-4" value="50" min="0" max="100" data-highlight="true">
+                <form action="" id='form_calificar'>
+                    <label for="slider-1">Me fascina:</label>
+                    <input type="range" name="slider-1" id="slider-1" class='slide' value="50" min="0" max="100" data-highlight="true">
+                    <label for="slider-2">Me gusta:</label>
+                    <input type="range" name="slider-2" id="slider-2" class='slide' value="50" min="0" max="100" data-highlight="true">
+                    <label for="slider-3">Me da sueño:</label>
+                    <input type="range" name="slider-3" id="slider-3" class='slide' value="50" min="0" max="100" data-highlight="true">
+                    <label for="slider-4">Me aburre:</label>
+                    <input type="range" name="slider-4" id="slider-4" class='slide' value="50" min="0" max="100" data-highlight="true">
+                    <input type="submit" value='Actualizar'>
+                </form>
             </article>
         </section>
-        <section data-role='page' id='page_muro'>
+        <section data-role='page' id='page_muro' data-theme='b'>
             <header data-role='header' data-position='fixed' data-id='main_header'>
                 <ul class="ui-grid-b header_nav">
-                    <li class="ui-block-a"><a href='#page_profile'>Perfil</a></li>
-                    <li class="ui-block-b"><a href='#page_filter'>Filtro</a></li>
-                    <li class="ui-block-c active_menu"><a href='#page_muro'>Muro</a></li>
+                    <li class="ui-block-a"><a href='#page_profile' data-transition='slide'>Perfil</a></li>
+                    <li class="ui-block-b"><a href='#page_filter' data-transition='slide'>Filtro</a></li>
+                    <li class="ui-block-c active_menu"><a href='#page_muro' data-transition='slide'>Muro</a></li>
                 </ul>
             </header>
             <article data-role='content'> 
@@ -165,11 +165,6 @@
             </article>
         </section>
 
-        <script src='https://cdn.firebase.com/v0/firebase.js'></script>
-        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>        
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script src="http://code.jquery.com/mobile/1.4.0-beta.1/jquery.mobile-1.4.0-beta.1.min.js"></script>
         <script type="text/javascript">
             app.initialize();
             var myDataRef = new Firebase('https://writeandshare.firebaseio.com');            
